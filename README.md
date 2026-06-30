@@ -1,109 +1,42 @@
----
+# 🐧 Linux Labs — Systems Training Simulator
 
-# ️ How to Run the Starbase Recovery Lab
+Welcome to CITS  Linux Labs.
 
-## 1. Clone or Download the Project
+This repository is a structured set of progressive system recovery and Linux command-line challenges. Each level simulates a real-world scenario where filesystems are broken, misconfigured, or partially corrupted.
 
-If this is on GitHub:
-
-```bash
-git clone <your-repo-url>
-cd starbase-recovery
-```
-
-Or just download the ZIP and extract it.
+Your job is to restore order using Linux commands.
 
 ---
 
-## 2. Generate the Mission Filesystem
+##  How It Works
 
-Run the setup script:
+Each level is self-contained:
+
+- You enter a level folder
+- You run a setup script (`create_lab.py`)
+- A broken file system is generated
+- You repair it using Linux commands
+- You validate your solution using `verify.py`
+
+---
+
+##  Level Structure
+
+| Level | Focus |
+|------|------|
+| Level 1 | File navigation & organization |
+| Level 2 | Permissions & access control |
+| Level 3 | Process simulation & system repair |
+
+---
+
+##  Getting Started
+
+Example workflow:
 
 ```bash
+cd level-1
 python create_lab.py
-```
-
-### What this does:
-
-* Creates a folder called `starbase_recovery`
-* Builds the broken starbase file system
-* Drops files into the wrong places (this is intentional)
-* Creates `verify.py` (your checker script)
-
----
-
-## 3. Enter the Mission Folder
-
-```bash
 cd starbase_recovery
-```
-
-You should now see folders like:
-
-```
-alpha/
-beta/
-gamma/
-delta/
-epsilon/
-storage/
-junk/
-```
-
----
-
-## 4. Complete the Mission
-
-Use Linux / terminal commands to:
-
-* Move files into correct folders
-* Delete corrupted files
-* Remove empty directories
-
-You can use commands like:
-
-```bash
-ls
-mv
-rm
-rmdir
-```
-
----
-
-## 5. Verify Your Solution
-
-When you think everything is fixed, run:
-
-```bash
+# fix the system
 python verify.py
-```
-
----
-
-## 6. Success / Failure Output
-
-###  If correct:
-
-```
-MISSION SUCCESSFUL — STARBASE RESTORED
-```
-
-###  If something is wrong:
-
-You’ll see a list of:
-
-* missing files
-* leftover corrupted files
-* incorrect folder structure
-
----
-
-## ️ Important Notes
-
-* Do NOT edit `verify.py`
-* Do NOT rename required files
-* The goal is **file system recovery**, not rewriting code
-
----
-
