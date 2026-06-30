@@ -1,7 +1,8 @@
-````md
-# 🧩 Level 1 — Starbase Recovery
 
-## 🚀 Mission Brief
+````md
+#  Level 1 — Starbase Recovery
+
+##  Mission Brief
 
 A critical starbase file system has been disrupted during an emergency evacuation. Files were scattered across multiple directories, and corrupted data was left behind.
 
@@ -9,7 +10,7 @@ Your task is to restore the system to a stable state so it can safely reboot for
 
 ---
 
-## 🎯 Mission Objectives
+##  Mission Objectives
 
 To complete this level, you must restore order across the system by:
 
@@ -21,7 +22,7 @@ The final system must match a stable operational state before verification.
 
 ---
 
-## 🧠 System Tools You Will Use
+## System Tools You Will Use
 
 You will rely on standard Linux command-line tools:
 
@@ -35,7 +36,7 @@ These commands are part of the Linux filesystem toolkit used for managing files,
 
 ---
 
-## 🛠️ Setup Instructions
+## ️ Setup Instructions
 
 Before beginning the mission, generate the corrupted filesystem:
 
@@ -55,7 +56,7 @@ Your job is to analyze the structure and restore logical organization.
 
 ---
 
-## 🧪 Verification
+##  Verification
 
 Once you believe the system has been fully restored, run the verification script:
 
@@ -72,7 +73,7 @@ The system will evaluate:
 
 ---
 
-## ⚠️ Rules of Engagement
+## ️ Rules of Engagement
 
 * Do not modify `verify.py`
 * Do not rename required files
@@ -81,7 +82,7 @@ The system will evaluate:
 
 ---
 
-## 🛰️ Success Condition
+## ️ Success Condition
 
 If completed correctly, you will receive:
 
@@ -91,7 +92,7 @@ MISSION SUCCESSFUL — STARBASE RESTORED
 
 ---
 
-## 🧭 Training Focus
+##  Training Focus
 
 This level focuses on:
 
@@ -102,9 +103,6 @@ This level focuses on:
 
 ---
 
-## 🔓 Next Step
-
-After successful completion, proceed to Level 2 to face more advanced system control challenges.
 
 ```
 ```
