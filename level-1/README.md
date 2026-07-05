@@ -1,109 +1,172 @@
 
-````md
-#  Level 1 — Starbase Recovery
+## 🛰 Operation Starbase Recovery
 
-##  Mission Brief
+## Mission Brief
 
-A critical starbase file system has been disrupted during an emergency evacuation. Files were scattered across multiple directories, and corrupted data was left behind.
+A meteor storm damaged **Starbase Orion**, causing the automated backup system to fail.
 
-Your task is to restore the system to a stable state so it can safely reboot for launch operations.
+Critical files have been scattered throughout the station, corrupted files remain, and the filesystem is no longer organized.
 
----
+Mission Control has tasked you with restoring the station before launch.
 
-##  Mission Objectives
 
-To complete this level, you must restore order across the system by:
+## Mission Objectives
 
-- Organizing files into the correct directory structure
-- Removing corrupted or unsafe files from the system
-- Cleaning up any empty directories left behind
+All required tasks are documented in the **Mission Log**.
 
-The final system must match a stable operational state before verification.
+Your mission is to:
 
----
+-   Read the Mission Log.
+-   Determine what needs to be repaired.
+-   Restore the filesystem.
+-   Verify your work.
 
-## System Tools You Will Use
+----------
 
-You will rely on standard Linux command-line tools:
+## Mission Rules
 
-- `ls` → inspect directory contents  
-- `cd` → navigate between directories  
-- `mv` → move files into correct locations  
-- `rm` → remove corrupted or unwanted files  
-- `rmdir` → remove empty directories  
+-   Use only the Linux terminal.
+-   Do not rename files.
+-   Do not edit file contents.
+-   Only remove files identified as corrupted.
+-   Remove empty folders when they are no longer needed.
+-   Do not modify the verification script.
 
-These commands are part of the Linux filesystem toolkit used for managing files, directories, and system structure.
+----------
 
----
+# Helpful Linux Commands
 
-## ️ Setup Instructions
+These examples demonstrate the **syntax** of each command. They are **not** the solution to this lab.
 
-Before beginning the mission, generate the corrupted filesystem:
+Command
 
-```bash
-python create_lab.py
-````
+Purpose
 
-This will create a broken starbase environment inside a working directory.
+Example
 
----
+`pwd`
 
-## 📁 Working Environment
+Display your current working directory.
 
-After setup, you will find a folder containing multiple directories and files that are intentionally misplaced or corrupted.
+`pwd`
 
-Your job is to analyze the structure and restore logical organization.
+`ls`
 
----
+List files and folders.
 
-##  Verification
+`ls`
 
-Once you believe the system has been fully restored, run the verification script:
+`ls -la`
 
-```bash
+Show detailed file information, including hidden files.
+
+`ls -la`
+
+`cd`
+
+Change directories.
+
+`cd Documents`
+
+`cd ..`
+
+Move up one directory.
+
+`cd ..`
+
+`cat`
+
+Display the contents of a text file.
+
+`cat notes.txt`
+
+`mkdir`
+
+Create a new directory.
+
+`mkdir Projects`
+
+`mv`
+
+Move a file or folder.
+
+`mv report.txt Projects/`
+
+`cp`
+
+Copy a file.
+
+`cp report.txt backup.txt`
+
+`rm`
+
+Delete a file.
+
+`rm old_notes.txt`
+
+`rmdir`
+
+Remove an empty directory.
+
+`rmdir Temp`
+
+`find`
+
+Search for files or folders.
+
+`find . -name "*.txt"`
+
+`clear`
+
+Clear the terminal screen.
+
+`clear`
+
+----------
+
+## Understanding Command Syntax
+
+Many Linux commands follow this pattern:
+
+```
+command [options] [source] [destination]
+```
+
+Example:
+
+```
+mv report.txt Documents/
+```
+
+-   **Command** — What action Linux should perform.
+-   **Options** — Additional settings (optional).
+-   **Source** — The file or folder you're working with.
+-   **Destination** — Where the item should be moved.
+
+----------
+
+## Helpful Resources
+
+-   Linux Journey — [https://linuxjourney.com](https://linuxjourney.com)
+-   Explainshell — [https://explainshell.com](https://explainshell.com)
+-   Linux Manual Pages — [https://man7.org/linux/man-pages/](https://man7.org/linux/man-pages/)
+
+----------
+
+## Mission Completion
+
+When you believe the station has been restored, run:
+
+```
 python verify.py
 ```
 
-The system will evaluate:
-
-* File placement accuracy
-* Removal of corrupted files
-* Directory structure integrity
-* Cleanup of empty folders
-
----
-
-## ️ Rules of Engagement
-
-* Do not modify `verify.py`
-* Do not rename required files
-* Do not skip corrupted file cleanup
-* Use terminal commands only (no manual editing of file contents)
-
----
-
-## ️ Success Condition
-
-If completed correctly, you will receive:
+or
 
 ```
-MISSION SUCCESSFUL — STARBASE RESTORED
+python3 verify.py
 ```
 
----
+Mission Control will inspect your work.
 
-##  Training Focus
-
-This level focuses on:
-
-* File system navigation
-* Directory organization
-* Safe file deletion
-* Understanding Linux structure hierarchy
-
----
-
-
-```
-```
-
+Good luck, Commander.
