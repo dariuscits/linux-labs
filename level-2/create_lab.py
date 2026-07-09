@@ -75,7 +75,10 @@ Good luck.
 for filename, contents in files.items():
     (root / filename).write_text(contents)
 
-# Broken permissions (the lab challenge)
+# -----------------------------
+# BROKEN PERMISSIONS (THE LAB)
+# -----------------------------
+
 os.chmod(root / "bridge/captain_log.txt", 0o000)
 os.chmod(root / "bridge/launch.sh", 0o644)
 
@@ -88,10 +91,22 @@ os.chmod(root / "crew_quarters/security_report.txt", 0o600)
 
 os.chmod(root / "hangar/navigation.cfg", 0o777)
 
+# -----------------------------
+# CREATE VERIFY SCRIPT
+# -----------------------------
+
 verify_script = r'''
 from pathlib import Path
 
 root = Path(__file__).parent
+
+GREEN = "\033[92m"
+RED = "\033[91m"
+CYAN = "\033[96m"
+RESET = "\033[0m"
+
+passed = 0
+failed = 0
 
 checks = {
     "bridge/captain_log.txt": 0o644,
@@ -107,33 +122,63 @@ checks = {
     "hangar/navigation.cfg": 0o600,
 }
 
-errors = []
+print(f"\n{CYAN}====================================")
+print(" STARBASE SECURITY VERIFICATION")
+print(f"===================================={RESET}\n")
 
 for file, expected in checks.items():
+
     path = root / file
 
     if not path.exists():
-        errors.append(f"Missing file: {file}")
+        failed += 1
+        print(f"{RED}✗ Missing: {file}{RESET}")
         continue
 
     actual = path.stat().st_mode & 0o777
 
-    if actual != expected:
-        errors.append(f"{file} is {oct(actual)} but should be {oct(expected)}")
+    if actual == expected:
+        passed += 1
+        print(f"{GREEN}✓ {file:<35} {oct(actual)}{RESET}")
+    else:
+        failed += 1
+        print(
+            f"{RED}✗ {file:<35} "
+            f"Current: {oct(actual)}  Expected: {oct(expected)}{RESET}"
+        )
 
-if errors:
-    print("\n *MISSION FAILED* \n")
-    for e in errors:
-        print("-", e)
+print(f"\n{CYAN}===================================={RESET}")
+print(f"{GREEN}Passed: {passed}{RESET}")
+print(f"{RED}Failed: {failed}{RESET}")
+
+if failed == 0:
+    print(f"""
+{GREEN}
+====================================
+ STARBASE SECURITY RESTORED
+
+ All systems secure.
+ Launch authorization granted.
+
+ Mission Complete.
+====================================
+{RESET}
+""")
 else:
-    print("""
+    print(f"""
+{RED}
 ====================================
-🛰 STARBASE SECURITY RESTORED
+ MISSION FAILED
 
-All systems secure.
-Launch authorization granted.
+ Some permissions are still incorrect.
+
+ Review the red entries above,
+ fix them, then run:
+
+    python verify.py
 
 ====================================
+{RESET}
 """)
 '''
 

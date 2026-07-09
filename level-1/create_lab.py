@@ -96,14 +96,37 @@ for filename, contents in files.items():
 # AUTO-GENERATE VERIFY SCRIPT
 # -----------------------------
 
-verify_script = '''
+verify_script = r'''
 from pathlib import Path
 
 root = Path(__file__).parent
 
-errors = []
+GREEN = "\033[92m"
+RED = "\033[91m"
+YELLOW = "\033[93m"
+RESET = "\033[0m"
 
-# REQUIRED FINAL STRUCTURE
+passed = 0
+failed = 0
+
+def success(message):
+    global passed
+    passed += 1
+    print(f"{GREEN}✓ {message}{RESET}")
+
+def fail(message):
+    global failed
+    failed += 1
+    print(f"{RED}✗ {message}{RESET}")
+
+print("\n===================================")
+print(" STARBASE RECOVERY VERIFICATION")
+print("===================================\n")
+
+# -----------------------------
+# REQUIRED FILES
+# -----------------------------
+
 expected_files = {
     "logs/mission_log.txt",
     "logs/captain_log.txt",
@@ -121,29 +144,61 @@ expected_files = {
     "cargo/food.txt"
 }
 
-for file in expected_files:
-    if not (root / file).exists():
-        errors.append(f"Missing file: {file}")
+print("Checking required files...\n")
 
-# CHECK DELETED FILES
+for file in sorted(expected_files):
+    if (root / file).exists():
+        success(f"{file}")
+    else:
+        fail(f"Missing: {file}")
+
+# -----------------------------
+# CORRUPTED FILES
+# -----------------------------
+
+print("\nChecking corrupted files...\n")
+
 for bad in ["virus.exe", "alien.tmp", "broken.dat", "old_backup.zip"]:
     if list(root.rglob(bad)):
-        errors.append(f"Corrupted file still exists: {bad}")
+        fail(f"{bad} still exists")
+    else:
+        success(f"{bad} removed")
 
-# CHECK FOR EXTRA TOP LEVEL FOLDERS
+# -----------------------------
+# EXTRA FOLDERS
+# -----------------------------
+
+print("\nChecking folders...\n")
+
 allowed = {"logs", "crew", "systems", "cargo", "__pycache__"}
+
+extras = []
 
 for item in root.iterdir():
     if item.is_dir() and item.name not in allowed:
-        errors.append(f"Extra folder still exists: {item.name}")
+        extras.append(item.name)
 
-# RESULT
-if errors:
-    print("\\nMISSION FAILED\\n")
-    for e in errors:
-        print("-", e)
+if extras:
+    for folder in sorted(extras):
+        fail(f"Extra folder still exists: {folder}")
 else:
-    print("\\nMISSION SUCCESSFUL — STARBASE RESTORED\\n")
+    success("No extra folders remain")
+
+# -----------------------------
+# SUMMARY
+# -----------------------------
+
+print("\n===================================")
+print(" RESULTS")
+print("===================================\n")
+
+print(f"{GREEN}Passed: {passed}{RESET}")
+print(f"{RED}Failed: {failed}{RESET}")
+
+if failed == 0:
+    print(f"\n{GREEN}MISSION SUCCESSFUL — STARBASE RESTORED!{RESET}\n")
+else:
+    print(f"\n{RED}MISSION FAILED{RESET}\n")
 '''
 
 (root / "verify.py").write_text(verify_script)
