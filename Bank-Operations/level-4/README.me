@@ -1,0 +1,91 @@
+# Level 4 - System Recovery
+
+## Linux Bank Operations Lab
+
+---
+
+# Overview
+
+Welcome back, Bank IT Technician!
+
+After successfully investigating suspicious activity and analyzing security logs, you have been assigned to the bank's infrastructure recovery team.
+
+The bank's transaction server is experiencing performance issues. The monitoring system has detected unusual programs running on the server, configuration problems, and possible unauthorized activity.
+
+Your mission is to investigate running processes, identify suspicious activity, repair the system configuration, and restore normal operations.
+
+This lab focuses on **Linux process management**.
+
+---
+
+# Learning Objectives
+
+By completing this lab, you will practice:
+
+- Viewing running processes
+- Understanding Process IDs (PID)
+- Searching process information
+- Identifying suspicious programs
+- Stopping processes
+- Reading system logs
+- Editing configuration files
+- Creating recovery documentation
+
+---
+
+# Commands You Will Use
+
+You may need:
+
+```bash
+ps
+grep
+kill
+cat
+nano
+
+
+##Getting Started
+Step 1 - Create the Lab
+
+Navigate to the Level 4 folder.
+
+Run:
+```bash
+python3 create_lab.py
+
+The setup script will:
+
+Ask for your employee name
+Create the bank recovery environment
+Generate system files and logs
+Create your recovery assignment
+Create the verification script
+Step 2 - Enter the Recovery Folder
+
+Navigate into the bank recovery directory:
+
+```bash
+cd bank_recovery
+
+##Step 3 - Read Your Assignment
+
+Open the recovery task file:
+
+```bash
+cat recovery_tasks.txt
+
+The task file contains the instructions from the infrastructure department.
+
+Verify Your Work
+
+After completing the recovery:
+
+Return to the Level 4 folder:
+
+```bash
+cd ..
+
+Run:
+```bash
+python3 verify.py
